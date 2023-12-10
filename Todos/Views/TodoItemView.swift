@@ -12,19 +12,24 @@ struct TodoItemView: View {
     @State var todoItem:TodoModel
     
     var body: some View {
-        HStack {
+        HStack 
+        {
             Image(systemName: todoItem.isCompleted ? "checkmark.circle":"circle")
                 .foregroundColor(todoItem.isCompleted ? Color.red:Color.green)
-            if (todoItem.isCompleted){
+            if (todoItem.isCompleted)
+            {
                 Text(todoItem.todo)
                     .strikethrough(color: Color.red)
             } else {
                 Text(todoItem.todo)
             }
-            
             Spacer()
         }
         .font(.title)
+        .onTapGesture
+        {
+            todoItem = todoItem.toggleIsCompleted()
+        }
     }
 }
 

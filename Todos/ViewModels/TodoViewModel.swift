@@ -10,7 +10,8 @@ import Foundation
 
 class TodoViewModel:ObservableObject {
     
-    @Published var todos:[TodoModel]=[]{
+    @Published var todos:[TodoModel]=[]
+    {
         didSet
         {
             saveTodos()
@@ -19,13 +20,13 @@ class TodoViewModel:ObservableObject {
     
     let savedTodosKey = "saved_todos_key"
     
-    init(initItems:[TodoModel]=[]) {
-        if (initItems.isEmpty){
+    init(testItems:[TodoModel]=[]) {
+        if (testItems.isEmpty){
             getTodos()
         }
         else
         {
-            todos = initItems
+            todos = testItems
         }
     }
     

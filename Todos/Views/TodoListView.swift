@@ -15,21 +15,19 @@ struct TodoListView: View {
     var body: some View {
         List{
             if (todoViewModel.todos.count>0){
+                
                 ForEach(todoViewModel.todos) { todo in
                     TodoItemView(todoItem: todo)
-                        .onTapGesture(
-                            perform: {
-                                todoViewModel.toggleIsCompleted(todo: todo)
-                            }
-                        )
+                    
                 }
                 .onMove(perform: todoViewModel.moveTodo)
                 .onDelete(perform: todoViewModel.deleteTodo)
+                
             } else {
                 Text("Nothing to do ! 😴")
                     .font(.title2)
                     .padding()
-                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                    .frame(maxWidth: .infinity)
             }
         }
         .listStyle(.plain)
@@ -44,7 +42,7 @@ struct TodoListView: View {
 
 #Preview {
     NavigationView{
-        TodoListView().environmentObject(TodoViewModel(initItems: [
+        TodoListView().environmentObject(TodoViewModel(testItems: [
                 TodoModel(todo: "Todo 1", isCompleted: false),
                 TodoModel(todo: "Second Todo 2", isCompleted: false),
                 TodoModel(todo: "Third 3", isCompleted: true)
