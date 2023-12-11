@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TodoItemView: View {
     
-    @State var todoItem:TodoModel
+    @Binding var todoItem:TodoModel
     
     var body: some View {
         HStack 
@@ -28,14 +28,24 @@ struct TodoItemView: View {
         .font(.title)
         .onTapGesture
         {
-            todoItem = todoItem.toggleIsCompleted()
+            withAnimation(.easeInOut) {
+                todoItem = todoItem.toggleIsCompleted()
+            }
         }
     }
 }
 
 #Preview {
+    
     Group{
-        TodoItemView(todoItem: TodoModel(todo: "Test 1", isCompleted: false))
-        TodoItemView(todoItem: TodoModel(todo: "Test 2", isCompleted: true))
+        TodoPreview(item: TodoModel(todo: "Test 1", isCompleted: false))
+        TodoPreview(item: TodoModel(todo: "Test 2", isCompleted: true))
+    }
+}
+
+struct TodoPreview: View {
+    @State var item:TodoModel
+    var body: some View {
+        TodoItemView(todoItem: $item)
     }
 }

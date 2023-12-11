@@ -14,7 +14,7 @@ struct TodosApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView{
+            NavigationStack{
                 TodoListView()
             }.environmentObject(todoViewModel)
             

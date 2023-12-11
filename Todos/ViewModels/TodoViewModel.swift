@@ -35,6 +35,7 @@ class TodoViewModel:ObservableObject {
             let savedData = UserDefaults.standard.data(forKey: savedTodosKey),
             let decodedTodos = try? JSONDecoder().decode([TodoModel].self, from: savedData)
         else {return}
+        print("Read: \(decodedTodos)")
         todos=decodedTodos
     }
     
@@ -42,7 +43,7 @@ class TodoViewModel:ObservableObject {
         guard 
             let encodedTodos = try? JSONEncoder().encode(todos)
         else {return}
-        print(encodedTodos)
+        print("Save: \(encodedTodos.description)")
         UserDefaults.standard.setValue(encodedTodos, forKey: savedTodosKey)
     }
     
